@@ -48,7 +48,9 @@ import {
   ShieldAlert,
   Sparkles,
   Database,
-  Trash2
+  Trash2,
+  KeyRound,
+  Send
 } from 'lucide-react';
 
 export default function SuperAdminDashboard() {
@@ -434,6 +436,7 @@ export default function SuperAdminDashboard() {
   const navItems = [
     { name: 'Dashboard', icon: LayoutGrid, badge: null },
     { name: 'Admins', icon: Users, badge: pendingAdmins > 0 ? String(pendingAdmins) : null },
+    { name: 'Provision Admin', icon: UserPlus, badge: 'Protocol' },
     { name: 'Login Photo Audit', icon: Camera, badge: null },
     { name: 'Users', icon: User, badge: null },
     { name: 'Roles & permissions', icon: Shield, badge: null },
@@ -1708,6 +1711,394 @@ export default function SuperAdminDashboard() {
                     Showing {filteredAdmins.length} of {totalAdmins} administrative personnel
                   </span>
                   <span className="font-mono">Role: Super Admin • Root Delegation Control</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* -------------------- TAB: PROVISION NEW ADMINISTRATOR (ENTERPRISE PROTOCOL) -------------------- */}
+          {activeTab === 'Provision Admin' && (
+            <div className="space-y-6 animate-in fade-in duration-200">
+              {/* Header Section */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      Security Protocol ISO/IEC 27001
+                    </span>
+                    <span className="text-[11px] font-mono text-slate-500">•</span>
+                    <span className="text-[11px] font-mono text-slate-400">AES-256-GCM / HMAC-SHA256</span>
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-2.5">
+                    <span>Provision New Administrator</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  </h2>
+                  <p className={`text-xs mt-1 ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Generate cryptographically secure temporary credentials and dispatch a single-use 24-hour activation link strictly to the private email.
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCreateAdminResult(null);
+                    setCreateAdminForm({ name: '', officialEmail: '', personalEmail: '' });
+                  }}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 border transition-all ${
+                    isDarkMode
+                      ? 'bg-slate-900/60 border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>Clear Form</span>
+                </button>
+              </div>
+
+              {/* 4 Protocol Architecture Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    isDarkMode ? 'bg-[#0d1420] border-slate-800/80 text-slate-200' : 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-3">
+                    <KeyRound className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Temp Password</h4>
+                  <p className="text-sm font-bold mt-1">CSPRNG ≥ 12 Chars</p>
+                  <p className="text-[11px] text-slate-500 mt-1">Cryptographically generated random 14-char key with symbols & digits.</p>
+                </div>
+
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    isDarkMode ? 'bg-[#0d1420] border-slate-800/80 text-slate-200' : 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-3">
+                    <Lock className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Password Policy</h4>
+                  <p className="text-sm font-bold mt-1">Forced 1st Reset</p>
+                  <p className="text-[11px] text-slate-500 mt-1"><code>must_change_password = true</code> enforced before dashboard unlock.</p>
+                </div>
+
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    isDarkMode ? 'bg-[#0d1420] border-slate-800/80 text-slate-200' : 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-3">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Activation Token</h4>
+                  <p className="text-sm font-bold mt-1">24h Single-Use Link</p>
+                  <p className="text-[11px] text-slate-500 mt-1">SHA-256 token hash invalidated immediately upon consumption.</p>
+                </div>
+
+                <div
+                  className={`p-4 rounded-2xl border transition-all ${
+                    isDarkMode ? 'bg-[#0d1420] border-slate-800/80 text-slate-200' : 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3">
+                    <Send className="w-4 h-4" />
+                  </div>
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Delivery Channel</h4>
+                  <p className="text-sm font-bold mt-1">Personal Email Only</p>
+                  <p className="text-[11px] text-slate-500 mt-1">Zero leak to official mailbox; prevents unauthorized early interception.</p>
+                </div>
+              </div>
+
+              {/* Main Provision Grid: Form (Left) & Preview / Result (Right) */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Left Column: Form */}
+                <div
+                  className={`lg:col-span-7 p-6 sm:p-7 rounded-3xl border transition-all ${
+                    isDarkMode
+                      ? 'bg-[#0d1420] border-slate-800 shadow-xl shadow-black/30'
+                      : 'bg-white border-slate-200 shadow-sm'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 pb-5 border-b border-slate-800/60 mb-6">
+                    <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-black">
+                      <UserPlus className="w-5 h-5 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold tracking-tight">Administrator Enrollment Parameters</h3>
+                      <p className="text-xs text-slate-400">Complete required fields to initiate cryptographically verified onboarding</p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleCreateAdmin} className="space-y-5">
+                    {/* 1. Full Name */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        Administrator Full Name <span className="text-rose-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                        <input
+                          type="text"
+                          value={createAdminForm.name}
+                          onChange={(e) => setCreateAdminForm({ ...createAdminForm, name: e.target.value })}
+                          placeholder="e.g. Kasun Jayasundara"
+                          required
+                          className={`w-full pl-10 pr-4 py-3 text-xs rounded-xl border outline-none font-medium transition-all ${
+                            isDarkMode
+                              ? 'bg-slate-900/90 border-slate-800 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500'
+                              : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600'
+                          }`}
+                        />
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-1.5 flex items-center gap-1.5">
+                        <CheckCircle2 className={`w-3.5 h-3.5 ${createAdminForm.name.trim().length >= 2 ? 'text-emerald-400' : 'text-slate-600'}`} />
+                        <span>Official name to appear on traffic audit logs and violation approval stamps.</span>
+                      </p>
+                    </div>
+
+                    {/* 2. Official Email (Login Username) */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        Official Work Email (Login Username) <span className="text-rose-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <Mail className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                        <input
+                          type="email"
+                          value={createAdminForm.officialEmail}
+                          onChange={(e) => setCreateAdminForm({ ...createAdminForm, officialEmail: e.target.value })}
+                          placeholder="e.g. kasun.j@emobility.lk"
+                          required
+                          className={`w-full pl-10 pr-4 py-3 text-xs rounded-xl border outline-none font-medium transition-all ${
+                            isDarkMode
+                              ? 'bg-slate-900/90 border-slate-800 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500'
+                              : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600'
+                          }`}
+                        />
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-1.5 flex items-center gap-1.5">
+                        <CheckCircle2 className={`w-3.5 h-3.5 ${/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(createAdminForm.officialEmail.trim()) ? 'text-emerald-400' : 'text-slate-600'}`} />
+                        <span>This official email will serve as the administrator's unique login username.</span>
+                      </p>
+                    </div>
+
+                    {/* 3. Personal / Private Email (Credential Delivery Destination) */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                        Personal / Private Email (Credential Delivery Destination) <span className="text-rose-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <Send className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-400" />
+                        <input
+                          type="email"
+                          value={createAdminForm.personalEmail}
+                          onChange={(e) => setCreateAdminForm({ ...createAdminForm, personalEmail: e.target.value })}
+                          placeholder="e.g. kasun.private@gmail.com"
+                          required
+                          className={`w-full pl-10 pr-4 py-3 text-xs rounded-xl border outline-none font-medium transition-all ${
+                            isDarkMode
+                              ? 'bg-slate-900/90 border-slate-800 text-white placeholder-slate-500 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500'
+                              : 'bg-white border-slate-200 text-slate-900 placeholder-slate-400 focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600'
+                          }`}
+                        />
+                      </div>
+                      <p className="text-[11px] text-emerald-400/90 mt-1.5 flex items-center gap-1.5 font-medium">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        <span>Initial temporary credentials and 24h setup link will be dispatched exclusively to this address.</span>
+                      </p>
+                    </div>
+
+                    {/* Submission CTA */}
+                    <div className="pt-4 border-t border-slate-800/60 flex items-center justify-between gap-4">
+                      <div className="text-[11px] text-slate-400 font-mono">
+                        Status: Ready for generation
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isCreatingAdmin || !createAdminForm.name || !createAdminForm.officialEmail || !createAdminForm.personalEmail}
+                        className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-black text-xs rounded-xl shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                      >
+                        {isCreatingAdmin ? (
+                          <>
+                            <RefreshCw className="w-4 h-4 animate-spin" />
+                            <span>Provisioning & Dispatching...</span>
+                          </>
+                        ) : (
+                          <>
+                            <UserPlus className="w-4 h-4 stroke-[2.5]" />
+                            <span>Provision Administrator</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                {/* Right Column: Live Protocol Status & Result Card */}
+                <div className="lg:col-span-5 space-y-6">
+                  {/* Result Card when Provisioned */}
+                  {createAdminResult ? (
+                    <div
+                      className={`p-6 rounded-3xl border space-y-5 animate-in zoom-in-95 duration-200 ${
+                        isDarkMode
+                          ? 'bg-[#0d1420] border-emerald-500/40 shadow-2xl shadow-emerald-500/10 text-slate-100'
+                          : 'bg-white border-emerald-500/40 shadow-xl shadow-emerald-500/10 text-slate-900'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                          <CheckCircle2 className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] font-bold uppercase">
+                            Provisioning Successful
+                          </span>
+                          <h4 className="text-base font-black tracking-tight mt-0.5">
+                            {createAdminResult.admin?.name}
+                          </h4>
+                        </div>
+                      </div>
+
+                      {/* Dispatch Status */}
+                      {createAdminResult.emailSent === false ? (
+                        <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-start gap-2.5">
+                          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-400" />
+                          <div>
+                            <p className="font-bold">Email Dispatch Notice</p>
+                            <p className="text-[11px] text-amber-200/80 mt-0.5">
+                              {createAdminResult.emailError || 'SMTP server could not be reached.'} You can resend credentials below.
+                            </p>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center gap-2">
+                          <Check className="w-4 h-4 text-emerald-400" />
+                          <span>Credentials securely dispatched to <strong>{createAdminResult.admin?.personalEmail}</strong></span>
+                        </div>
+                      )}
+
+                      {/* Credential Details with Copy Buttons */}
+                      <div className={`p-4 rounded-2xl border space-y-3.5 text-xs ${
+                        isDarkMode ? 'bg-slate-950/60 border-slate-800' : 'bg-slate-50 border-slate-200'
+                      }`}>
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Official Username (Login Email)
+                          </span>
+                          <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-emerald-400 font-bold">
+                            <span className="truncate mr-2">{createAdminResult.admin?.officialEmail || createAdminResult.admin?.email}</span>
+                            <button
+                              onClick={() => copyToClipboard(createAdminResult.admin?.officialEmail || createAdminResult.admin?.email)}
+                              className="p-1 text-slate-400 hover:text-white transition-colors"
+                              title="Copy Username"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Generated Temporary Password (≥ 12 Chars)
+                          </span>
+                          <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-cyan-400 font-bold">
+                            <span>{createAdminResult.tempPassword}</span>
+                            <button
+                              onClick={() => copyToClipboard(createAdminResult.tempPassword)}
+                              className="p-1 text-slate-400 hover:text-white transition-colors"
+                              title="Copy Password"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                            Single-Use 24h Setup URL
+                          </span>
+                          <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-[11px] text-slate-300">
+                            <span className="truncate mr-2">{createAdminResult.setPasswordUrl || createAdminResult.activationUrl}</span>
+                            <button
+                              onClick={() => copyToClipboard(createAdminResult.setPasswordUrl || createAdminResult.activationUrl)}
+                              className="p-1 text-slate-400 hover:text-white transition-colors flex-shrink-0"
+                              title="Copy Link"
+                            >
+                              <Copy className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="pt-2 flex items-center justify-between gap-3">
+                        <button
+                          type="button"
+                          onClick={() => handleResendCredentials(createAdminResult.admin?.id, createAdminResult.admin?.personalEmail)}
+                          disabled={isResending}
+                          className="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl transition-all border border-slate-700 flex items-center gap-1.5 disabled:opacity-50 cursor-pointer"
+                        >
+                          <RefreshCw className={`w-3.5 h-3.5 ${isResending ? 'animate-spin' : ''}`} />
+                          <span>Resend Credentials</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setCreateAdminResult(null);
+                            setCreateAdminForm({ name: '', officialEmail: '', personalEmail: '' });
+                          }}
+                          className="px-4 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-emerald-950 font-bold text-xs rounded-xl transition-all cursor-pointer"
+                        >
+                          Provision Another
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Protocol Verification Checklist (Prior to submission) */
+                    <div
+                      className={`p-6 rounded-3xl border space-y-4 ${
+                        isDarkMode ? 'bg-[#0d1420] border-slate-800 text-slate-200' : 'bg-white border-slate-200 text-slate-800 shadow-sm'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>Pre-Flight Verification Checklist</span>
+                      </div>
+
+                      <div className="space-y-3 text-xs">
+                        <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                          <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${createAdminForm.name.trim().length >= 2 ? 'text-emerald-400' : 'text-slate-600'}`} />
+                          <div>
+                            <span className="font-bold">Full Name Provided</span>
+                            <p className="text-[11px] text-slate-400">Minimum 2 characters for national identity linkage.</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                          <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(createAdminForm.officialEmail.trim()) ? 'text-emerald-400' : 'text-slate-600'}`} />
+                          <div>
+                            <span className="font-bold">Official Login Email Format</span>
+                            <p className="text-[11px] text-slate-400">Valid email structure used exclusively for login identity.</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                          <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(createAdminForm.personalEmail.trim()) ? 'text-emerald-400' : 'text-slate-600'}`} />
+                          <div>
+                            <span className="font-bold">Personal Delivery Address Format</span>
+                            <p className="text-[11px] text-slate-400">Secure recipient for credentials & password activation link.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-emerald-500/5 border border-emerald-500/15 text-[11px] text-slate-400 leading-relaxed">
+                        🔒 <strong>Zero-Trust Guarantee:</strong> The generated password setup token is stored hashed and permanently revoked the moment a permanent password is set.
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
