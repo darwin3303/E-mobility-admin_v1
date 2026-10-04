@@ -1,0 +1,16 @@
+# Environment Variables
+.env
+.env.*
+!.env.example
+*.env
+
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Private media & uploads
+data/secure_photos/

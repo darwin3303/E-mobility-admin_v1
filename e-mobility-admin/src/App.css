@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+
+  &:hover {
+    border-color: var(--accent-border);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+.hero {
+  position: relative;
+
+  .base,
+  .framework,
+  .vite {
+    inset-inline: 0;
+    margin: 0 auto;
+  }
+
+  .base {
+    width: 170px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .framework,
+  .vite {
+    position: absolute;
+  }
+
+  .framework {
+    z-index: 1;
+    top: 34px;
+    height: 28px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
+      scale(1.4);
+  }
+
+  .vite {
+    z-index: 0;
+    top: 107px;
+    height: 26px;
+    width: auto;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
+      scale(0.8);
+  }
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+
+  @media (max-width: 1024px) {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border);
+  text-align: left;
+
+  & > div {
+    flex: 1 1 0;
+    padding: 32px;
+    @media (max-width: 1024px) {
+      padding: 24px 20px;
+    }
+  }
+
+  .icon {
+    margin-bottom: 16px;
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border);
+
+  @media (max-width: 1024px) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+
+  .logo {
+    height: 18px;
+  }
+
+  a {
+    color: var(--text-h);
+    font-size: 16px;
+    border-radius: 6px;
+    background: var(--social-bg);
+    display: flex;
+    padding: 6px 12px;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
+    .button-icon {
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      flex: 1 1 calc(50% - 8px);
+    }
+
+    a {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border);
+  @media (max-width: 1024px) {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4.5px;
+    border: 5px solid transparent;
+  }
+
+  &::before {
+    left: 0;
+    border-left-color: var(--border);
+  }
+  &::after {
+    right: 0;
+    border-right-color: var(--border);
+  }
+}
+
+/* අයිකන තියෙන කන්ටේනරය */
+.sidebar-icon-container {
+    position: relative; /* මෙය අනිවාර්යයි - පොප් අප් එක මෙයට සාපේක්ෂව පිහිටයි */
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* අයිකන පෙට්ටිය (ඔබේ රූපයේ තියෙන නිල් පැහැති පෙට්ටි) */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a0a0b8; /* අක්‍රීය විට පාට */
+    background: transparent;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Active වූ විට (ඔබේ රූපයේ තියෙන විදියට නිල් පාට වීම) */
+.icon-box.active {
+    background: #2962ff;
+    color: white;
+    box-shadow: 0 4px 12px rgba(41, 98, 255, 0.4);
+}
+
+/* ********** පොප් අප් (Tooltip) සඳහා CSS ********** */
+.tooltip {
+    position: absolute;
+    left: 70px; /* අයිකන එකෙන් ටිකක් ඈතට */
+    top: 50%;
+    transform: translateY(-50%) translateX(-10px); /* මුලින් ටිකක් ඇතුලට සැඟවී තබයි */
+    background-color: #1f2937;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap; /* අකුරු පේලියට තබා ගන්න */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    
+    /* Animation සඳහා */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* මෙය ලස්සන කරන්නේ */
+    pointer-events: none; /* මවුස් එක පොප් එක උඩට ගියාම අයිකන එකේ hover එක නැති වෙන්නේ නෑ */
+}
+
+/* මවුස් එක අයිකනය මතට ගිය විට පොප් අප් එක පෙන්වීම */
+.sidebar-icon-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0); /* Animation එක සමඟ ඉදිරියට එයි */
+}
+
+/* පොප් අප් එකට පොඩි ඊතලයක් (ති්‍රකෝණයක්) එකතු කිරීමට (ඔබට අවශ්‍ය නම්) */
+.tooltip::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px 6px 6px 0;
+    border-style: solid;
+    border-color: transparent #1f2937 transparent transparent;
+}

@@ -1,0 +1,401 @@
+{
+  "cam_01": {
+    "name": "Cam-01 (Southern Expy Km 68.4)",
+    "location": "Pinnaduwa Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        260,
+        690
+      ],
+      [
+        1040,
+        690
+      ],
+      [
+        750,
+        270
+      ],
+      [
+        530,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_02": {
+    "name": "Cam-02 (Outer Circular Km 14.2)",
+    "location": "Kadawatha Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 14.0,
+    "length_m": 50.0,
+    "image_pts": [
+      [
+        180,
+        700
+      ],
+      [
+        1120,
+        700
+      ],
+      [
+        820,
+        240
+      ],
+      [
+        460,
+        240
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Fast)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Cruising)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      },
+      {
+        "name": "Lane 4 (Slow)",
+        "x_range_m": [
+          10.5,
+          14.0
+        ]
+      }
+    ]
+  },
+  "cam_03": {
+    "name": "Cam-03 (Katunayake Expy Km 8.5)",
+    "location": "Peliyagoda Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        280,
+        680
+      ],
+      [
+        1000,
+        680
+      ],
+      [
+        740,
+        270
+      ],
+      [
+        540,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_04": {
+    "name": "Cam-04 (Central Expy Km 22.1)",
+    "location": "Mirigama Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        270,
+        685
+      ],
+      [
+        1010,
+        685
+      ],
+      [
+        745,
+        275
+      ],
+      [
+        535,
+        275
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_05": {
+    "name": "Cam-05 (Southern Expy Km 34.8)",
+    "location": "Dodangoda Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        260,
+        690
+      ],
+      [
+        1040,
+        690
+      ],
+      [
+        750,
+        270
+      ],
+      [
+        530,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_06": {
+    "name": "Cam-06 (Outer Circular Km 8.1)",
+    "location": "Kaduwela Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        260,
+        690
+      ],
+      [
+        1040,
+        690
+      ],
+      [
+        750,
+        270
+      ],
+      [
+        530,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_07": {
+    "name": "Cam-07 (Katunayake Expy Km 19.4)",
+    "location": "Ja-Ela Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        280,
+        680
+      ],
+      [
+        1000,
+        680
+      ],
+      [
+        740,
+        270
+      ],
+      [
+        540,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  },
+  "cam_08": {
+    "name": "Cam-08 (Central Expy Km 39.5)",
+    "location": "Kurunegala Interchange",
+    "speed_limit_kmh": 105.0,
+    "width_m": 10.5,
+    "length_m": 45.0,
+    "image_pts": [
+      [
+        260,
+        690
+      ],
+      [
+        1040,
+        690
+      ],
+      [
+        750,
+        270
+      ],
+      [
+        530,
+        270
+      ]
+    ],
+    "flow_direction": "towards",
+    "lanes": [
+      {
+        "name": "Lane 1 (Overtaking)",
+        "x_range_m": [
+          0.0,
+          3.5
+        ]
+      },
+      {
+        "name": "Lane 2 (Cruising)",
+        "x_range_m": [
+          3.5,
+          7.0
+        ]
+      },
+      {
+        "name": "Lane 3 (Slow)",
+        "x_range_m": [
+          7.0,
+          10.5
+        ]
+      }
+    ]
+  }
+}

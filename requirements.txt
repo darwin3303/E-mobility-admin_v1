@@ -1,0 +1,17 @@
+# E-Mobility AI Traffic Server Dependencies
+# Install with: pip install -r requirements.txt
+
+# Web Framework
+flask==3.1.1
+flask-cors==5.0.1
+flask-sock==0.7.0
+
+# Computer Vision & AI
+opencv-python-headless==4.10.0.84
+numpy==2.0.2
+ultralytics==8.3.0
+
+# Utilities
+Pillow==11.0.0
+PyYAML==6.0.2
+requests==2.32.3

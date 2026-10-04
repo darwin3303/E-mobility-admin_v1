@@ -1,0 +1,28 @@
+{
+  "name": "e-mobility-backend",
+  "version": "1.0.0",
+  "description": "E-Mobility Admin Backend API",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:prod": "node src/migrate.js && node src/index.js",
+    "dev": "nodemon src/index.js",
+    "migrate": "node src/migrate.js",
+    "seed:superadmin": "node src/seed_super_admin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "nodemailer": "^9.0.5",
+    "pg": "^8.23.0",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

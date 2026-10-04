@@ -1,0 +1,8 @@
+names:
+  0: Car
+  1: SUV_Van
+  2: Motorcycle
+  3: Truck_Bus
+path: D:\e-mobility-admin\cam01_dataset
+train: images/train
+val: images/val
