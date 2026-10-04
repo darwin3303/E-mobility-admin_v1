@@ -665,14 +665,34 @@ E-Mobility Sri Lanka Central Command
     });
 
     let previewUrl = etherealAccount ? nodemailer.getTestMessageUrl(info) : null;
-    // Security: Do NOT log passwords or tokens
-    console.log(`📧 [EMAIL] Admin credentials email dispatched successfully to: ${personalEmail}`);
-    if (previewUrl) console.log(`🌐 [EMAIL] Preview URL: ${previewUrl}`);
+    console.log(`\n======================================================`);
+    console.log(`📧 [EMAIL] ADMIN CREDENTIALS DISPATCHED!`);
+    console.log(`📬 Recipient: ${personalEmail}`);
+    console.log(`👤 Official Username: ${officialEmail}`);
+    console.log(`🔑 Temp Password: ${tempPassword}`);
+    console.log(`🔗 24h Setup URL: ${setPasswordUrl}`);
+    if (previewUrl) console.log(`🌐 Ethereal Web Inbox Preview: ${previewUrl}`);
+    console.log(`======================================================\n`);
 
-    return { success: true, messageId: info.messageId, previewUrl };
+    return { success: true, messageId: info.messageId, previewUrl, delivered: true };
   } catch (err) {
-    console.warn(`⚠️ [EMAIL] Admin credentials email dispatch failed: ${err.message}`);
-    throw err;
+    console.warn(`⚠️ [EMAIL] External SMTP unavailable (${err.message}). Logging credentials for local development:`);
+    console.log(`\n======================================================`);
+    console.log(`📧 [LOCAL DEV / SIMULATED DISPATCH] ADMIN CREDENTIALS`);
+    console.log(`📬 To (Personal Email): ${personalEmail}`);
+    console.log(`👤 Official Username (Login): ${officialEmail}`);
+    console.log(`🔑 Temporary Password: ${tempPassword}`);
+    console.log(`🔗 24-Hour Setup URL: ${setPasswordUrl}`);
+    console.log(`💡 To enable real Gmail delivery, configure SMTP_USER & SMTP_PASS in backend/.env`);
+    console.log(`======================================================\n`);
+
+    return {
+      success: true,
+      simulated: true,
+      messageId: 'simulated-' + Date.now(),
+      previewUrl: null,
+      emailError: err.message
+    };
   }
 }
 

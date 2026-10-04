@@ -865,7 +865,7 @@ export const authService = {
     let emailSent = false;
     let emailError = null;
     try {
-      await sendAdminCredentialsEmail({
+      const emailResult = await sendAdminCredentialsEmail({
         name: cleanName,
         officialEmail: cleanOfficial,
         personalEmail: cleanPersonal,
@@ -873,7 +873,8 @@ export const authService = {
         setPasswordUrl,
         loginUrl
       });
-      emailSent = true;
+      emailSent = Boolean(emailResult?.delivered);
+      emailError = emailResult?.emailError || null;
     } catch (mailErr) {
       emailError = mailErr.message || 'SMTP delivery failed';
       console.warn(`⚠️ [EMAIL] Credentials email delivery note: ${emailError}`);
