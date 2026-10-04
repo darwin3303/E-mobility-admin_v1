@@ -6,3 +6,5 @@ names:
 path: D:\e-mobility-admin\cam01_dataset
 train: images/train
 val: images/val
+
+

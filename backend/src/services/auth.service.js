@@ -319,34 +319,6 @@ export const authService = {
             throw new Error('Account registration was not approved. Please contact the Super Administrator.');
           }
 
-          // Daily Admin Login Verification: require camera verification photo for Admin accounts
-          if (userRole === 'admin') {
-            const pendingToken = jwt.sign(
-              {
-                id: user.id,
-                nic: user.nic,
-                email: plainEmail,
-                name: user.name,
-                role: userRole,
-                stage: 'photo_verification'
-              },
-              config.jwtSecret,
-              { expiresIn: '15m' }
-            );
-
-            return {
-              requiresPhotoVerification: true,
-              pendingToken,
-              user: {
-                id: user.id,
-                nic: user.nic,
-                email: plainEmail,
-                name: user.name,
-                role: userRole
-              }
-            };
-          }
-
           const token = jwt.sign(
             { id: user.id, nic: user.nic, email: plainEmail, role: userRole },
             config.jwtSecret,
@@ -457,34 +429,6 @@ export const authService = {
       }
       if (userStatus === 'rejected') {
         throw new Error('Account registration was not approved. Please contact the Super Administrator.');
-      }
-
-      // Daily Admin Login Verification: require camera verification photo for Admin accounts
-      if (userRole === 'admin') {
-        const pendingToken = jwt.sign(
-          {
-            id: existing.id,
-            nic: existing.nic,
-            email: plainEmail,
-            name: existing.name,
-            role: userRole,
-            stage: 'photo_verification'
-          },
-          config.jwtSecret,
-          { expiresIn: '15m' }
-        );
-
-        return {
-          requiresPhotoVerification: true,
-          pendingToken,
-          user: {
-            id: existing.id,
-            nic: existing.nic,
-            email: plainEmail,
-            name: existing.name,
-            role: userRole
-          }
-        };
       }
 
       const token = jwt.sign(
