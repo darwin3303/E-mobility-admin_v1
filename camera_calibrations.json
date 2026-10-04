@@ -2,7 +2,7 @@
   "cam_01": {
     "name": "Cam-01 (Southern Expy Km 68.4)",
     "location": "Pinnaduwa Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -51,7 +51,7 @@
   "cam_02": {
     "name": "Cam-02 (Outer Circular Km 14.2)",
     "location": "Kadawatha Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 14.0,
     "length_m": 50.0,
     "image_pts": [
@@ -107,7 +107,7 @@
   "cam_03": {
     "name": "Cam-03 (Katunayake Expy Km 8.5)",
     "location": "Peliyagoda Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -156,7 +156,7 @@
   "cam_04": {
     "name": "Cam-04 (Central Expy Km 22.1)",
     "location": "Mirigama Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -205,7 +205,7 @@
   "cam_05": {
     "name": "Cam-05 (Southern Expy Km 34.8)",
     "location": "Dodangoda Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -254,7 +254,7 @@
   "cam_06": {
     "name": "Cam-06 (Outer Circular Km 8.1)",
     "location": "Kaduwela Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -303,7 +303,7 @@
   "cam_07": {
     "name": "Cam-07 (Katunayake Expy Km 19.4)",
     "location": "Ja-Ela Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
@@ -352,7 +352,7 @@
   "cam_08": {
     "name": "Cam-08 (Central Expy Km 39.5)",
     "location": "Kurunegala Interchange",
-    "speed_limit_kmh": 105.0,
+    "speed_limit_kmh": 100.0,
     "width_m": 10.5,
     "length_m": 45.0,
     "image_pts": [
