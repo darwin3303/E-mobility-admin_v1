@@ -22,11 +22,10 @@ services:
         value: https://emobility-admin.onrender.com
       - key: ALLOWED_ORIGINS
         value: https://emobility-admin.onrender.com
-      # Database - set from Render PostgreSQL (see databases section below)
+      # Database - Neon PostgreSQL. Paste the connection string in the
+      # Render dashboard when prompted. Never commit it to this file.
       - key: DATABASE_URL
-        fromDatabase:
-          name: emobility-db
-          property: connectionString
+        sync: false
       # SMTP - Fill these in Render dashboard manually (sensitive)
       - key: SMTP_HOST
         sync: false
@@ -40,11 +39,13 @@ services:
         sync: false
       - key: MAIL_FROM
         sync: false
-      # Encryption keys - generate 64-char hex strings
+      # Encryption keys - must be 64-char hex strings.
+      # Generate each with: openssl rand -hex 32
+      # Keep them unchanged after first deploy, or encrypted data becomes unreadable.
       - key: ENCRYPTION_KEY
-        generateValue: true
+        sync: false
       - key: EMAIL_HASH_KEY
-        generateValue: true
+        sync: false
       # Super Admin
       - key: SUPER_ADMIN_EMAIL
         sync: false
@@ -89,11 +90,4 @@ services:
       - key: VITE_WS_URL
         value: wss://emobility-ai-server.onrender.com/ws/live
 
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# PostgreSQL Database
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-databases:
-  - name: emobility-db
-    plan: free
-    databaseName: emobility_db
-    user: emobility_user
+# Database: hosted on Neon (external), so no `databases:` block is needed.
