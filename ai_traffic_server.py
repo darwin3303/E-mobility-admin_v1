@@ -26,6 +26,16 @@ sock = Sock(app)
 
 VIDEO_PATH = os.environ.get('VIDEO_PATH', 'expressway_traffic.mp4')
 
+# Cameras that are allowed to run. Each camera loads its own YOLOv8 model and
+# video decoder, so on small instances (e.g. 512 MB) only one should be enabled.
+# Override with a comma-separated list, e.g. ENABLED_CAMERAS=cam_01,cam_02,cam_03,cam_04
+ENABLED_CAMERAS = [
+    c.strip() for c in os.environ.get('ENABLED_CAMERAS', 'cam_01').split(',') if c.strip()
+]
+
+def is_camera_enabled(cam_id):
+    return cam_id in ENABLED_CAMERAS
+
 workers = {}
 workers_lock = threading.Lock()
 connected_websockets = set()
@@ -230,6 +240,8 @@ def generate_mjpeg_stream(cam_id="cam_01"):
 @app.route('/snapshot/<cam_id>.jpg')
 def camera_snapshot(cam_id):
     """Single JPEG frame snapshot endpoint"""
+    if not is_camera_enabled(cam_id):
+        return ('Camera disabled on this deployment', 503)
     worker = get_worker(cam_id)
     jpeg_bytes = worker.get_jpeg()
     if jpeg_bytes is not None:
@@ -423,6 +435,8 @@ def set_speed_limit():
 @app.route('/video_feed/<cam_id>')
 def video_feed(cam_id):
     """Zero-lag MJPEG stream endpoint for frontend video tags"""
+    if not is_camera_enabled(cam_id):
+        return ('Camera disabled on this deployment', 503)
     return Response(
         generate_mjpeg_stream(cam_id),
         mimetype='multipart/x-mixed-replace; boundary=frame'
@@ -472,8 +486,9 @@ def get_camera_health():
     return jsonify({'cameras': health_list})
 
 if __name__ == '__main__':
-    # Initialize visible grid cameras on startup (cam_01 to cam_04)
-    for cid in ['cam_01', 'cam_02', 'cam_03', 'cam_04']:
+    # Initialize only the enabled cameras on startup (default: cam_01)
+    print(f"Enabled cameras: {', '.join(ENABLED_CAMERAS)}")
+    for cid in ENABLED_CAMERAS:
         get_worker(cid)
 
     port = int(os.environ.get('PORT', 8000))
